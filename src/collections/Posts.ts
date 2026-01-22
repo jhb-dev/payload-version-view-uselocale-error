@@ -16,8 +16,26 @@ export const Posts: CollectionConfig = {
       required: true,
     },
     {
-      name: 'content',
-      type: 'richText',
-    },
+      // this is needed for the reproduction of the issue: https://github.com/payloadcms/payload/issues/15255
+      name: 'group',
+      type: 'group',
+      fields: [
+        {
+          name: 'blocks',
+          type: 'blocks',
+          blocks: [
+           {
+            slug: 'richText',
+            fields: [
+              {
+                name: 'content',
+                type: 'richText',
+              },
+            ],
+           }
+          ],
+        }
+      ],
+    }
   ],
 }
